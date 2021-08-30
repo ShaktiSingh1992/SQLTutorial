@@ -52,3 +52,80 @@ SELECT MIN(SALARY) FROM EmployeeSalary
 SELECT MAX(SALARY) FROM EmployeeSalary
 
 SELECT AVG(SALARY) FROM SQLTutorial.dbo.EmployeeSalary
+
+/*
+where statement 
+=, <>, <, >,And, Or, Like, Null, Not Null, In
+*/
+
+USE SQLTutorial
+SELECT * FROM EmployeeDemographics
+WHERE FirstName = 'Jim'
+
+SELECT * FROM EmployeeDemographics
+WHERE FirstName <> 'Jim' --in the o/p we got everybody except jim
+
+SELECT * FROM EmployeeDemographics
+WHERE Age <= 32 --people who are less than or equal to 32
+
+SELECT * FROM EmployeeDemographics
+WHERE Age <= 32 AND Gender = 'Male'
+
+SELECT * FROM EmployeeDemographics
+WHERE LastName LIKE 'S%' --WILL SELECT EVERY LASTNAME THAT STARTS WITH 'S'
+
+SELECT * FROM EmployeeDemographics
+WHERE LastName LIKE '%S%' --WILL SELECT WHERE THERE IS 'S' ANYWHERE IN ANYBODYS NAME
+
+SELECT * FROM EmployeeDemographics
+WHERE LastName LIKE 'S%ott%' --will select name that starts from 'S' and has 'ott' in it
+
+---can also use like for numerical data like age or salary
+
+SELECT * 
+FROM EMPLOYEEDEMOGRAPHICS
+WHERE FIRSTNAME IS NOT NULL 
+
+SELECT * 
+FROM EmployeeDemographics
+WHERE FirstName IN ('JIM', 'Michael') --IN is used like '=' but for multiple things 
+
+/*
+group by, order by
+*/
+
+--group by is similar to distinct BUT IT ROLES EVERYTHING UP IN ONE COLOUMN
+
+SELECT DISTINCT(GENDER)
+FROM EmployeeDemographics
+
+SELECT GENDER
+FROM EmployeeDemographics
+GROUP BY Gender
+
+SELECT GENDER, COUNT (GENDER)
+FROM EmployeeDemographics
+GROUP BY Gender
+
+SELECT GENDER, COUNT (GENDER) AS CountGender
+FROM EmployeeDemographics
+WHERE AGE >31
+GROUP BY Gender  ---HERE WE ARE HAVING A COUJT OF GENDER WHERE AGE IS GREATER THAN 31
+
+SELECT GENDER, COUNT (GENDER) AS CountGender
+FROM EmployeeDemographics
+WHERE AGE >31
+GROUP BY Gender 
+ORDER BY Gender asc 
+
+SELECT GENDER, COUNT (GENDER) AS CountGender
+FROM EmployeeDemographics
+WHERE AGE >31
+GROUP BY Gender 
+ORDER BY CountGender desc
+
+SELECT * FROM EmployeeDemographics
+ORDER BY Age, Gender DESC
+
+SELECT * FROM EmployeeDemographics
+ORDER BY 4, 5 DESC ---USING COLOUMN NUMBER INSTEAD OF COLOUMN NAME
